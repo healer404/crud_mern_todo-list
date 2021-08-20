@@ -4,25 +4,24 @@ import {Paper, TextField, Checkbox, Button} from "@material-ui/core";
 import './App.css';
 
 class App extends Tasks{
-    state = { tasks: [], currentTask: ""}
+    state = { tasks: [], currentTask: ""};
     render() {
-        const tasks = this.state;
+        const {tasks} = this.state;
         return (
             <div className="App flex-ctr-ctr">
                 <Paper elevation={3} className="container">
                     <div className="heading">
-                        ToDo
+                        ToDo List
                     </div>
-                    <form onSubmit={this.handleSubmit} className="flex-ctr-ctr my-15px">
+                    <form onSubmit={this.handleSubmit} className="flex-ctr-ctr my-15px px-2">
                         <TextField
                             variant="outlined"
                             size="small"
-                            className="w-80pct"
+                            className="w-100pct input-text"
                             value={this.state.currentTask}
                             required={true}
                             onChange={this.handleChange}
                             placeholder="Add New ToDo"
-                            autoComplete={false}
                         >
                         </TextField>
                         <Button
@@ -31,13 +30,16 @@ class App extends Tasks{
                             variant="outlined"
                             type="submit"
                         >
-                            Add Task
+                            Add
                         </Button>
                     </form>
-                    <div className="">
+                    <div className="task-list-container mx-2">
                         {
                             tasks.map((task) => (
-                                <Paper key={task._id} className="flex-ctr-ctr task-containers">
+                                <Paper 
+                                    key={task._id}
+                                    className="flex-ctr-ctr task-containers"
+                                >
                                     <Checkbox
                                         checked={task.completed}
                                         onClick={() => this.handleUpdate(task._id)}
